@@ -1,0 +1,20 @@
+{
+    "balances": [
+        {
+            "balanceAmount": {
+                "amount": "7036.17",
+                "currency": "EUR"
+            },
+            "balanceType": "expected",
+            "referenceDate": "2024-01-15"
+        },
+        {
+            "balanceAmount": {
+                "amount": "7137.17",
+                "currency": "EUR"
+            },
+            "balanceType": "closingBooked",
+            "referenceDate": "2024-01-12"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+[
+    [
+        {
+            "account": {
+                "resourceId": "QUNDT1VOVF8wMTAxNzA4MjI1NVA",
+                "iban": "FR9430002010170000082255P21",
+                "currency": "EUR",
+                "name": "Compte de dépôts",
+                "product": "Compte de dépôts",
+                "cashAccountType": "CACC",
+                "linkedAccounts": "01017082255P",
+                "usage": "PRIV"
+            }
+        },
+        {
+            "account": {
+                "resourceId": "Q0FSRF81MDAxNTM3MDUxOVg3NTQ",
+                "currency": "XXX",
+                "name": "Carte Premier - M E BENKARA-MAHAMMED",
+                "product": "Carte Premier",
+                "cashAccountType": "CARD",
+                "linkedAccounts": "01017082255P"
+            }
+        }
+    ]
+]

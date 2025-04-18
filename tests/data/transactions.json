@@ -1,0 +1,1325 @@
+{
+    "transactions": {
+        "booked": [
+            {
+                "transactionId": "feaf3e05-40cd-437e-92ca-8fef8d3b3797",
+                "entryReference": "feaf3e05-40cd-437e-92ca-8fef8d3b3797",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-23",
+                "transactionAmount": {
+                    "amount": "-21.2",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "COFIROUTE"
+                ],
+                "internalTransactionId": "f1461a041ce61ef7a3b67b3cf1d4da76"
+            },
+            {
+                "transactionId": "22863d5a-d654-4eee-862e-fd4527954a43",
+                "entryReference": "22863d5a-d654-4eee-862e-fd4527954a43",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-23",
+                "transactionAmount": {
+                    "amount": "-57.78",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "CARREFOUR DAC VL"
+                ],
+                "internalTransactionId": "62642a88c1eba0d7be8a2f49173cf32c"
+            },
+            {
+                "transactionId": "9e6b98c7-7cc2-4e5e-9f0d-96f665266576",
+                "entryReference": "9e6b98c7-7cc2-4e5e-9f0d-96f665266576",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-20",
+                "transactionAmount": {
+                    "amount": "-115",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Klarna*COS France local"
+                ],
+                "internalTransactionId": "524fc43c8a569413e5920df3f7fef7e5"
+            },
+            {
+                "transactionId": "1f4993ea-5ddc-49ea-b469-0f2f82b80aee",
+                "entryReference": "1f4993ea-5ddc-49ea-b469-0f2f82b80aee",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-20",
+                "transactionAmount": {
+                    "amount": "-18.43",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER* EATS"
+                ],
+                "internalTransactionId": "738a475984ee1fef1a7a880fbeeabe29"
+            },
+            {
+                "transactionId": "5a00d9c7-e596-48c5-8f67-6e17fc988811",
+                "entryReference": "5a00d9c7-e596-48c5-8f67-6e17fc988811",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-19",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-YANAN MATHIE"
+                ],
+                "internalTransactionId": "a3037940e218bf188ab4688eaa9bf3a0"
+            },
+            {
+                "transactionId": "4d8a2b96-1a89-407e-b3c9-3fd59600a822",
+                "entryReference": "4d8a2b96-1a89-407e-b3c9-3fd59600a822",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-16",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "CAFE DES SPORTS"
+                ],
+                "internalTransactionId": "67431d806540e938512ab66a3876e156"
+            },
+            {
+                "transactionId": "2e68709c-ee31-40f7-8a13-197c8fb1cf16",
+                "entryReference": "2e68709c-ee31-40f7-8a13-197c8fb1cf16",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-16",
+                "transactionAmount": {
+                    "amount": "-85",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "DECATHLON 0212"
+                ],
+                "internalTransactionId": "cf0ed7bf6602955bf902ab674713df95"
+            },
+            {
+                "transactionId": "6a2fbcff-75f0-4582-b1d6-b270d2c80191",
+                "entryReference": "6a2fbcff-75f0-4582-b1d6-b270d2c80191",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-13",
+                "transactionAmount": {
+                    "amount": "-14",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BEYOND BORDER"
+                ],
+                "internalTransactionId": "4596f2f00c54188519029e6d33c12ff2"
+            },
+            {
+                "transactionId": "0ffc9989-90b0-419c-bde6-36a335e2db19",
+                "entryReference": "0ffc9989-90b0-419c-bde6-36a335e2db19",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-13",
+                "transactionAmount": {
+                    "amount": "-43.68",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ],
+                "internalTransactionId": "4925b1a466a23b1383a7f89856a48e57"
+            },
+            {
+                "transactionId": "3dabbeb8-f6dd-4cd7-ad7f-e486ede7d8b8",
+                "entryReference": "3dabbeb8-f6dd-4cd7-ad7f-e486ede7d8b8",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-09",
+                "transactionAmount": {
+                    "amount": "-234.95",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "THE BRADERY"
+                ],
+                "internalTransactionId": "fad1b0bd1699fae9f68c1dae5e3412ce"
+            },
+            {
+                "transactionId": "d64959b4-19a2-41a6-8fda-a41b3fff40f4",
+                "entryReference": "d64959b4-19a2-41a6-8fda-a41b3fff40f4",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-07",
+                "transactionAmount": {
+                    "amount": "-32",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "TGR LB"
+                ],
+                "internalTransactionId": "562b654ad2c011a9ae339c50f840649e"
+            },
+            {
+                "transactionId": "e0fb6d68-3051-419e-a6ca-d3439d5b9930",
+                "entryReference": "e0fb6d68-3051-419e-a6ca-d3439d5b9930",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-06",
+                "transactionAmount": {
+                    "amount": "-21.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LA REDOUTE FR"
+                ],
+                "internalTransactionId": "f47c07a5e32c4a70170cd95ddb30e182"
+            },
+            {
+                "transactionId": "b1ca4c57-63b3-49bb-90dc-8c2d1322b704",
+                "entryReference": "b1ca4c57-63b3-49bb-90dc-8c2d1322b704",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-06",
+                "transactionAmount": {
+                    "amount": "-2.54",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "CARREFOUR CITY"
+                ],
+                "internalTransactionId": "4a5e09e0019373f792a9cb00159ed5b8"
+            },
+            {
+                "transactionId": "6636458a-c357-440c-ab80-2f70b82038d5",
+                "entryReference": "6636458a-c357-440c-ab80-2f70b82038d5",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-03",
+                "transactionAmount": {
+                    "amount": "-3.2",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "NORMAL PARIS FONATINES FR"
+                ],
+                "internalTransactionId": "0f5cc3245e094405001dfd28b063f6a6"
+            },
+            {
+                "transactionId": "ee98d2dc-4125-4993-9fb4-96b2a5429ce7",
+                "entryReference": "ee98d2dc-4125-4993-9fb4-96b2a5429ce7",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-20.6",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LS LE POLE"
+                ],
+                "internalTransactionId": "20fe3f7043bcc3e478b7726508d3fb35"
+            },
+            {
+                "transactionId": "c68e50df-b8f6-49bc-a1e1-ea5fed3f0fe8",
+                "entryReference": "c68e50df-b8f6-49bc-a1e1-ea5fed3f0fe8",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-11.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-PEPE MANZO"
+                ],
+                "internalTransactionId": "8c498401332d9839a03fcf2d3d28ac1e"
+            },
+            {
+                "transactionId": "b733b9be-1e36-4e25-afe7-f033ae44fffe",
+                "entryReference": "b733b9be-1e36-4e25-afe7-f033ae44fffe",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-33",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC.ROYAL PONTOI"
+                ],
+                "internalTransactionId": "6c328f92c3a45d35d35d714b5989826f"
+            },
+            {
+                "transactionId": "ac05e6ae-2f80-4d8f-9f63-f03573ee28dd",
+                "entryReference": "ac05e6ae-2f80-4d8f-9f63-f03573ee28dd",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-5.4",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LS LE POLE"
+                ],
+                "internalTransactionId": "73e786c8e0418781ff879f22d84f7a6e"
+            },
+            {
+                "transactionId": "9385b542-bba3-443f-806f-16deefd9c9de",
+                "entryReference": "9385b542-bba3-443f-806f-16deefd9c9de",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-9.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-PEPE MANZO"
+                ],
+                "internalTransactionId": "263490167ce9035bb0886a399fb94d71"
+            },
+            {
+                "transactionId": "841f345b-aca6-4e0a-889e-31bf2f28f365",
+                "entryReference": "841f345b-aca6-4e0a-889e-31bf2f28f365",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-02",
+                "transactionAmount": {
+                    "amount": "-9.6",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LA BRIOCHE DOREE"
+                ],
+                "internalTransactionId": "871ff0b030ce4f8f6620a3a7ecef8fd4"
+            },
+            {
+                "transactionId": "99c616c8-abfc-42c2-86a3-53720777d805",
+                "entryReference": "99c616c8-abfc-42c2-86a3-53720777d805",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-01",
+                "transactionAmount": {
+                    "amount": "-24.8",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "KYOTORAMA"
+                ],
+                "internalTransactionId": "d67cf9f064acdb0a98e7f8ceaebb9161"
+            },
+            {
+                "transactionId": "726c4534-f3ca-4d07-b31c-16c970fc518f",
+                "entryReference": "726c4534-f3ca-4d07-b31c-16c970fc518f",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-12-01",
+                "transactionAmount": {
+                    "amount": "-84.1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SERVICE NAVIGO  4042878"
+                ],
+                "internalTransactionId": "f0ccd06af20dab7ea1208f6a21afb803"
+            },
+            {
+                "transactionId": "ef667878-aa73-43b8-9ad8-5e0b8833ed1d",
+                "entryReference": "ef667878-aa73-43b8-9ad8-5e0b8833ed1d",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-11-30",
+                "transactionAmount": {
+                    "amount": "-9.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "YARA ELYSEES"
+                ],
+                "internalTransactionId": "433f819a95b5d272d7891ee81260b257"
+            },
+            {
+                "transactionId": "39d20424-3186-4710-a85f-abc606eeaf4c",
+                "entryReference": "39d20424-3186-4710-a85f-abc606eeaf4c",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-11-30",
+                "transactionAmount": {
+                    "amount": "-15",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "CIRQUE DU SOLEIL KURIOS"
+                ],
+                "internalTransactionId": "1516b22021110c8d3273d300596d54c2"
+            },
+            {
+                "transactionId": "f8f17504-2f28-442d-97d0-581c78ee2a4e",
+                "entryReference": "f8f17504-2f28-442d-97d0-581c78ee2a4e",
+                "bookingDate": "2023-12-29",
+                "valueDate": "2023-11-29",
+                "transactionAmount": {
+                    "amount": "-3.8",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "PEGAST DAMES"
+                ],
+                "internalTransactionId": "be11fbbc83b5f0ba3b7895bc6123be1a"
+            },
+            {
+                "transactionId": "e91cefa8-ee86-4296-8b40-325323cbe8f2",
+                "entryReference": "e91cefa8-ee86-4296-8b40-325323cbe8f2",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-28",
+                "transactionAmount": {
+                    "amount": "-11",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "VIA ROMA"
+                ],
+                "internalTransactionId": "1f8fe30cba16db55fc78eaf13ef309e6"
+            },
+            {
+                "transactionId": "70cd9c7b-e16d-4ed1-b449-8d8f6723ba3c",
+                "entryReference": "70cd9c7b-e16d-4ed1-b449-8d8f6723ba3c",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-27",
+                "transactionAmount": {
+                    "amount": "-9.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "YARA ELYSEES"
+                ],
+                "internalTransactionId": "ed1626f6c1f5d8897341460a955b51ac"
+            },
+            {
+                "transactionId": "b6467883-7df6-4a7f-bda1-3f360e4c0f18",
+                "entryReference": "b6467883-7df6-4a7f-bda1-3f360e4c0f18",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-26",
+                "transactionAmount": {
+                    "amount": "-310.94",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Zalando Payments"
+                ],
+                "internalTransactionId": "515080963633fe9a3e8136a0eeece80f"
+            },
+            {
+                "transactionId": "7bfb0bb2-312e-4292-a3a8-150c1da0ec14",
+                "entryReference": "7bfb0bb2-312e-4292-a3a8-150c1da0ec14",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-26",
+                "transactionAmount": {
+                    "amount": "-11.6",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "TURQ OISE"
+                ],
+                "internalTransactionId": "d663c12bc85fbf983957e398c8284750"
+            },
+            {
+                "transactionId": "1caef5e6-1ad1-43dc-abb5-74b6a7a0ef8a",
+                "entryReference": "1caef5e6-1ad1-43dc-abb5-74b6a7a0ef8a",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-26",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LE VAL D OISE"
+                ],
+                "internalTransactionId": "c9c72581b90a1674e5e5492817d74bd3"
+            },
+            {
+                "transactionId": "5d232a70-bbd3-4bde-ad9b-8f02fa59a58d",
+                "entryReference": "5d232a70-bbd3-4bde-ad9b-8f02fa59a58d",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-25",
+                "transactionAmount": {
+                    "amount": "-25",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "DARRAS STUDIO"
+                ],
+                "internalTransactionId": "2a38d342e7007d8a58b85620ffaf8b77"
+            },
+            {
+                "transactionId": "4f9c6438-7fbb-4a73-b853-11682f8c2fb8",
+                "entryReference": "4f9c6438-7fbb-4a73-b853-11682f8c2fb8",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-25",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LE VAL D OISE"
+                ],
+                "internalTransactionId": "209ad4817809b19100572642c9a9892e"
+            },
+            {
+                "transactionId": "af61df0b-f395-434d-a6ad-3dfc490f2a04",
+                "entryReference": "af61df0b-f395-434d-a6ad-3dfc490f2a04",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-24",
+                "transactionAmount": {
+                    "amount": "-15.3",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "PEGAST DAMES"
+                ],
+                "internalTransactionId": "67b627f10e322a652573336c3ba7a144"
+            },
+            {
+                "transactionId": "ef1eb793-f1d7-4eac-b82c-4f0fef2d2655",
+                "entryReference": "ef1eb793-f1d7-4eac-b82c-4f0fef2d2655",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-23",
+                "transactionAmount": {
+                    "amount": "-27.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "A L'AFFICHE"
+                ],
+                "internalTransactionId": "98b0f74463f2772df83ff711d6719301"
+            },
+            {
+                "transactionId": "74b1295f-9f42-4672-849c-eb0a1ccafbba",
+                "entryReference": "74b1295f-9f42-4672-849c-eb0a1ccafbba",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-23",
+                "transactionAmount": {
+                    "amount": "-3.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-COMPTOIR BATIGNOL"
+                ],
+                "internalTransactionId": "3f03992722dba2edb14d5b56d555e8c4"
+            },
+            {
+                "transactionId": "7bf2bad1-378b-4c98-9ce1-5fc6e7950fb8",
+                "entryReference": "7bf2bad1-378b-4c98-9ce1-5fc6e7950fb8",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-22",
+                "transactionAmount": {
+                    "amount": "-11",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "VIA ROMA"
+                ],
+                "internalTransactionId": "062531a0fad62f867871f6a7391b85fc"
+            },
+            {
+                "transactionId": "ae9608eb-ea8b-49a1-8588-31cd25a9b067",
+                "entryReference": "ae9608eb-ea8b-49a1-8588-31cd25a9b067",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-21",
+                "transactionAmount": {
+                    "amount": "-14.08",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER* EATS"
+                ],
+                "internalTransactionId": "8af39220e7d900d92895f2c0f767fd8a"
+            },
+            {
+                "transactionId": "2a325ffc-5fc3-437e-8d07-38a56ab0c958",
+                "entryReference": "2a325ffc-5fc3-437e-8d07-38a56ab0c958",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-21",
+                "transactionAmount": {
+                    "amount": "-30.9",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-YANAN MATHIE"
+                ],
+                "internalTransactionId": "fd9c07cda2144ba0f17d029d9e928ff0"
+            },
+            {
+                "transactionId": "1e466cd7-e62b-45b9-a264-32be591425d4",
+                "entryReference": "1e466cd7-e62b-45b9-a264-32be591425d4",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-21",
+                "transactionAmount": {
+                    "amount": "-15",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BILLIE BRICK"
+                ],
+                "internalTransactionId": "b03d5fac635e847470c588eabf32216f"
+            },
+            {
+                "transactionId": "cf01a65c-2996-4d64-b3aa-5bb2f6efb1eb",
+                "entryReference": "cf01a65c-2996-4d64-b3aa-5bb2f6efb1eb",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-20",
+                "transactionAmount": {
+                    "amount": "-24.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "PlayStation Net"
+                ],
+                "internalTransactionId": "710949b8e6d513a9aaa1010802f4a01e"
+            },
+            {
+                "transactionId": "7f095e4b-551f-41ae-b936-07e2c3e94e31",
+                "entryReference": "7f095e4b-551f-41ae-b936-07e2c3e94e31",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-19",
+                "transactionAmount": {
+                    "amount": "-67",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "TAVERNE PORT CERGY"
+                ],
+                "internalTransactionId": "d88119e4903c7e4e8c3b48a131844500"
+            },
+            {
+                "transactionId": "3af33023-70ff-476a-bbd9-6917316dcd13",
+                "entryReference": "3af33023-70ff-476a-bbd9-6917316dcd13",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-19",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LE VAL D OISE"
+                ],
+                "internalTransactionId": "6da0f56776467b88d7b47e2f182d494f"
+            },
+            {
+                "transactionId": "09c85787-17a1-42d1-b335-f2a707fc89a7",
+                "entryReference": "09c85787-17a1-42d1-b335-f2a707fc89a7",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-19",
+                "transactionAmount": {
+                    "amount": "-111.96",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Zalando Payments"
+                ],
+                "internalTransactionId": "7451391db324e8007aa52cdc71b49180"
+            },
+            {
+                "transactionId": "ad978d3f-e1b1-49cf-97f8-7e4d2de29d13",
+                "entryReference": "ad978d3f-e1b1-49cf-97f8-7e4d2de29d13",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-18",
+                "transactionAmount": {
+                    "amount": "-20",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Boulanger"
+                ],
+                "internalTransactionId": "10bed3e086f9113935f286a611b40afc"
+            },
+            {
+                "transactionId": "0f09a970-09f9-4e5c-a36b-d955cdf39170",
+                "entryReference": "0f09a970-09f9-4e5c-a36b-d955cdf39170",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-18",
+                "transactionAmount": {
+                    "amount": "-66.21",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "E.LECLERC"
+                ],
+                "internalTransactionId": "31f0b4ef6c7036206ab58aa1269e215a"
+            },
+            {
+                "transactionId": "dbf2fbc6-2d5c-414e-9b2a-92a5196abc60",
+                "entryReference": "dbf2fbc6-2d5c-414e-9b2a-92a5196abc60",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-16",
+                "transactionAmount": {
+                    "amount": "-4",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "DAME"
+                ],
+                "internalTransactionId": "2ee40dc902ecacd84057762380134592"
+            },
+            {
+                "transactionId": "4f5cb17b-c964-48b7-8642-9d76369dc94b",
+                "entryReference": "4f5cb17b-c964-48b7-8642-9d76369dc94b",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-14",
+                "transactionAmount": {
+                    "amount": "-16.44",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ],
+                "internalTransactionId": "7542ac2304b5c890c7b91115b74bb7b8"
+            },
+            {
+                "transactionId": "e3fa67c2-ad44-4589-94a0-65afa3b0f9d6",
+                "entryReference": "e3fa67c2-ad44-4589-94a0-65afa3b0f9d6",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-13",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-YANAN MATHIE"
+                ],
+                "internalTransactionId": "e28a2b52280d5c8ede569737ec774d2b"
+            },
+            {
+                "transactionId": "d393e255-4b25-44f1-866a-70794d8829dc",
+                "entryReference": "d393e255-4b25-44f1-866a-70794d8829dc",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-12",
+                "transactionAmount": {
+                    "amount": "-1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "CLINIQUE DU PARC"
+                ],
+                "internalTransactionId": "bc2d78cbfe4ef1100c6dd397a05eeb69"
+            },
+            {
+                "transactionId": "92728698-69d2-420d-b6ef-cc5f8b754022",
+                "entryReference": "92728698-69d2-420d-b6ef-cc5f8b754022",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-11",
+                "transactionAmount": {
+                    "amount": "-33.6",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "MC DONALD'S"
+                ],
+                "internalTransactionId": "ee35d51b3a65a09c798d15f15e487386"
+            },
+            {
+                "transactionId": "437a247a-0847-4b8e-aae7-1015b7eccafc",
+                "entryReference": "437a247a-0847-4b8e-aae7-1015b7eccafc",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-10",
+                "transactionAmount": {
+                    "amount": "-16.18",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ],
+                "internalTransactionId": "5dc456e2fe87760a35d6a10a89e77780"
+            },
+            {
+                "transactionId": "ed77c37c-2616-4e9b-9cd9-49957b9ef615",
+                "entryReference": "ed77c37c-2616-4e9b-9cd9-49957b9ef615",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-09",
+                "transactionAmount": {
+                    "amount": "-15.8",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LINAS INTERIEUR"
+                ],
+                "internalTransactionId": "f73ed7562c35cacf2c00b34462d1e288"
+            },
+            {
+                "transactionId": "156bab7e-8594-47be-92e7-add20fbeb043",
+                "entryReference": "156bab7e-8594-47be-92e7-add20fbeb043",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-09",
+                "transactionAmount": {
+                    "amount": "-16.8",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "PARKING STMARTIN"
+                ],
+                "internalTransactionId": "0d248919b8d89c1740f0c39c806e55d1"
+            },
+            {
+                "transactionId": "e72aecfb-5537-4cbb-8a8e-780cbd5ccbe7",
+                "entryReference": "e72aecfb-5537-4cbb-8a8e-780cbd5ccbe7",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-07",
+                "transactionAmount": {
+                    "amount": "-3.92",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Eurest2777"
+                ],
+                "internalTransactionId": "5ce97d78e21bf8f349c1b41b4bf2171d"
+            },
+            {
+                "transactionId": "7395bd30-eec0-4976-b69f-aa0630179afb",
+                "entryReference": "7395bd30-eec0-4976-b69f-aa0630179afb",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-07",
+                "transactionAmount": {
+                    "amount": "-2.3",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Eurest2777"
+                ],
+                "internalTransactionId": "26fbf294a544f1a283a8c40d7b7c2993"
+            },
+            {
+                "transactionId": "9cebec15-ce7a-4e63-8e2c-f873f9c62d30",
+                "entryReference": "9cebec15-ce7a-4e63-8e2c-f873f9c62d30",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-04",
+                "transactionAmount": {
+                    "amount": "-4.55",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "RELAY387632SC"
+                ],
+                "internalTransactionId": "85d335dc75093c9123d75ecab2b722e3"
+            },
+            {
+                "transactionId": "5a1bc736-f203-4eac-9bf4-f4219fa23679",
+                "entryReference": "5a1bc736-f203-4eac-9bf4-f4219fa23679",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-04",
+                "transactionAmount": {
+                    "amount": "-49.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "PlayStation Net"
+                ],
+                "internalTransactionId": "396de8d4b623d6e278dbe05eebee5be3"
+            },
+            {
+                "transactionId": "022bcb7c-dfac-4051-a7fc-40fe007b4db6",
+                "entryReference": "022bcb7c-dfac-4051-a7fc-40fe007b4db6",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-04",
+                "transactionAmount": {
+                    "amount": "-55.82",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "E.LECLERC"
+                ],
+                "internalTransactionId": "389b1e683bde70dd9352952d584d81fb"
+            },
+            {
+                "transactionId": "73a9efab-127b-46e6-8bf5-40e410981050",
+                "entryReference": "73a9efab-127b-46e6-8bf5-40e410981050",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-03",
+                "transactionAmount": {
+                    "amount": "-16",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BEYOND BORDER"
+                ],
+                "internalTransactionId": "570272e45f7eb03cd375ecbd9b1f24cd"
+            },
+            {
+                "transactionId": "f3b0fc8a-fdb1-4cbf-a753-36308a1da841",
+                "entryReference": "f3b0fc8a-fdb1-4cbf-a753-36308a1da841",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-02",
+                "transactionAmount": {
+                    "amount": "-14",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BEYOND BORDER"
+                ],
+                "internalTransactionId": "339c4054592356d2234ed6e4ebe78641"
+            },
+            {
+                "transactionId": "2c0b89ca-5374-4f35-84f2-ee99c4e10554",
+                "entryReference": "2c0b89ca-5374-4f35-84f2-ee99c4e10554",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-02",
+                "transactionAmount": {
+                    "amount": "-9",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC. WAGON BLEU"
+                ],
+                "internalTransactionId": "23312b69be331689b38798e7bdc0672d"
+            },
+            {
+                "transactionId": "7c6456db-791e-4811-b42f-39dc698318c3",
+                "entryReference": "7c6456db-791e-4811-b42f-39dc698318c3",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-11-01",
+                "transactionAmount": {
+                    "amount": "-84.1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SERVICE NAVIGO  4042878"
+                ],
+                "internalTransactionId": "064f932a57e98ee3c4b6ffae5d436864"
+            },
+            {
+                "transactionId": "97ec5230-e661-475e-b161-22307c547c85",
+                "entryReference": "97ec5230-e661-475e-b161-22307c547c85",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-10-31",
+                "transactionAmount": {
+                    "amount": "-1.98",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ],
+                "internalTransactionId": "d93c344b2adfebb16c4651559b3653ef"
+            },
+            {
+                "transactionId": "2a9b8303-53e0-448d-affe-89d2d7bb474d",
+                "entryReference": "2a9b8303-53e0-448d-affe-89d2d7bb474d",
+                "bookingDate": "2023-11-30",
+                "valueDate": "2023-10-30",
+                "transactionAmount": {
+                    "amount": "-11.99",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ],
+                "internalTransactionId": "f3c5d88f92497552548dd1a60ced7684"
+            },
+            {
+                "transactionId": "6cbd9a36-8d96-4be9-a251-46cd3c311dbb",
+                "entryReference": "6cbd9a36-8d96-4be9-a251-46cd3c311dbb",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-29",
+                "transactionAmount": {
+                    "amount": "-1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LA TRADITION D'A"
+                ],
+                "internalTransactionId": "c9f06ffbd3448644a0207fc36557fd84"
+            },
+            {
+                "transactionId": "82eb2cc7-f488-4759-a73d-4849783a614d",
+                "entryReference": "82eb2cc7-f488-4759-a73d-4849783a614d",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-28",
+                "transactionAmount": {
+                    "amount": "-22.1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "MC DONALD'S"
+                ],
+                "internalTransactionId": "651a5087321790e9e2efc84902a839f6"
+            },
+            {
+                "transactionId": "c79623d8-d396-4c76-90f9-822565f70f9b",
+                "entryReference": "c79623d8-d396-4c76-90f9-822565f70f9b",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-27",
+                "transactionAmount": {
+                    "amount": "-8.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SYLJO"
+                ],
+                "internalTransactionId": "292b6d4f55af972dee13d9f56bd0f333"
+            },
+            {
+                "transactionId": "58731548-72c7-44eb-9be4-5849b5b0e5e2",
+                "entryReference": "58731548-72c7-44eb-9be4-5849b5b0e5e2",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-27",
+                "transactionAmount": {
+                    "amount": "-11.7",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BANHMILA"
+                ],
+                "internalTransactionId": "5b9be37302689412ca73d34578689e61"
+            },
+            {
+                "transactionId": "947988e5-a583-47ed-b6f7-49c58473c220",
+                "entryReference": "947988e5-a583-47ed-b6f7-49c58473c220",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-26",
+                "transactionAmount": {
+                    "amount": "-12",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "DAMES MAGIC 1"
+                ],
+                "internalTransactionId": "8ec5c901c0769c2cac1c52b04fdb0195"
+            },
+            {
+                "transactionId": "1a8b9771-80e4-488b-a87c-2e81519d0918",
+                "entryReference": "1a8b9771-80e4-488b-a87c-2e81519d0918",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-26",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LE NARVAL"
+                ],
+                "internalTransactionId": "1bbd2896a4fa35ea952964c29d5aeacb"
+            },
+            {
+                "transactionId": "14f906bc-c904-4b49-8262-6d3eb173f1fb",
+                "entryReference": "14f906bc-c904-4b49-8262-6d3eb173f1fb",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-25",
+                "transactionAmount": {
+                    "amount": "-31",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Sunday*Augustin"
+                ],
+                "internalTransactionId": "38df0c4add2b016143bc512d46c6beab"
+            },
+            {
+                "transactionId": "06a176bc-2ff3-4a22-9ab2-443e2a1f99a6",
+                "entryReference": "06a176bc-2ff3-4a22-9ab2-443e2a1f99a6",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-25",
+                "transactionAmount": {
+                    "amount": "-12.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "O BATIGNOLLES"
+                ],
+                "internalTransactionId": "6f3a56c0b76efb7daa4916567800dd4f"
+            },
+            {
+                "transactionId": "bd42f524-b02e-4d44-ad66-6192e9eaba1b",
+                "entryReference": "bd42f524-b02e-4d44-ad66-6192e9eaba1b",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-24",
+                "transactionAmount": {
+                    "amount": "-1.15",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Eurest2777"
+                ],
+                "internalTransactionId": "bf80339afeba476049fdbc9734b71094"
+            },
+            {
+                "transactionId": "9f60a846-9578-49e0-b9af-02f2ecaef5db",
+                "entryReference": "9f60a846-9578-49e0-b9af-02f2ecaef5db",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-24",
+                "transactionAmount": {
+                    "amount": "-2.77",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "Eurest2777"
+                ],
+                "internalTransactionId": "72b768933f3b99abfa6205363f95e6c5"
+            },
+            {
+                "transactionId": "088a200e-0d12-4edf-9412-649bbf062eb8",
+                "entryReference": "088a200e-0d12-4edf-9412-649bbf062eb8",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-24",
+                "transactionAmount": {
+                    "amount": "-8.2",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-BOUL.CHORFAN"
+                ],
+                "internalTransactionId": "d57e4ee4a5c4e8a50f55a2b75f9e3bb6"
+            },
+            {
+                "transactionId": "d9e84fc0-8771-4010-8dd8-00627db912c0",
+                "entryReference": "d9e84fc0-8771-4010-8dd8-00627db912c0",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-23",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-YANAN MATHIE"
+                ],
+                "internalTransactionId": "a8dc2e03daabc24cb56d358423a8b6b8"
+            },
+            {
+                "transactionId": "b9451263-cc75-4318-abe4-a8eaf096e95e",
+                "entryReference": "b9451263-cc75-4318-abe4-a8eaf096e95e",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-23",
+                "transactionAmount": {
+                    "amount": "-9.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "YARA ELYSEES"
+                ],
+                "internalTransactionId": "7d468a908641c53b4296795c9b78d82a"
+            },
+            {
+                "transactionId": "9e3ebf4d-5b48-4ad3-9df1-8f5f8ced1b17",
+                "entryReference": "9e3ebf4d-5b48-4ad3-9df1-8f5f8ced1b17",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-22",
+                "transactionAmount": {
+                    "amount": "-98.41",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "IKEA"
+                ],
+                "internalTransactionId": "f95aca6954473d211e0c7e14504f6549"
+            },
+            {
+                "transactionId": "fa9fb102-d7ad-4034-a40a-2c78ee1f6572",
+                "entryReference": "fa9fb102-d7ad-4034-a40a-2c78ee1f6572",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-21",
+                "transactionAmount": {
+                    "amount": "-30",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "YOUBA COIFFURE"
+                ],
+                "internalTransactionId": "629ae3c35c1c6082a9054a44e1733a44"
+            },
+            {
+                "transactionId": "a50d168d-2aad-48ba-b5cd-b46fd2495bc5",
+                "entryReference": "a50d168d-2aad-48ba-b5cd-b46fd2495bc5",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-21",
+                "transactionAmount": {
+                    "amount": "-59.24",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "E.LECLERC"
+                ],
+                "internalTransactionId": "4369ebd18d454c9d3d5f9549e046bba1"
+            },
+            {
+                "transactionId": "71bcb8f3-91b0-4ac5-b774-8950c769e35a",
+                "entryReference": "71bcb8f3-91b0-4ac5-b774-8950c769e35a",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-21",
+                "transactionAmount": {
+                    "amount": "-22",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LE VAL D OISE"
+                ],
+                "internalTransactionId": "7e30d6f43a8f4d0452de602515be323d"
+            },
+            {
+                "transactionId": "ac89f4fb-ac6c-4d2a-8194-12609abf9d51",
+                "entryReference": "ac89f4fb-ac6c-4d2a-8194-12609abf9d51",
+                "bookingDate": "2023-10-31",
+                "valueDate": "2023-10-20",
+                "transactionAmount": {
+                    "amount": "-11",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "VIA ROMA"
+                ],
+                "internalTransactionId": "7c598898cd6f5da5049ca85427030869"
+            }
+        ],
+        "pending": [
+            {
+                "transactionId": "7773ccf6-147b-421c-9f35-a1b03e0b501e",
+                "entryReference": "7773ccf6-147b-421c-9f35-a1b03e0b501e",
+                "bookingDate": "2024-01-10",
+                "valueDate": "2024-01-10",
+                "transactionAmount": {
+                    "amount": "-48.7",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SC-PIPELINE STO"
+                ]
+            },
+            {
+                "transactionId": "63d6655b-f065-4e85-83b8-7bdd4a39efff",
+                "entryReference": "63d6655b-f065-4e85-83b8-7bdd4a39efff",
+                "bookingDate": "2024-01-10",
+                "valueDate": "2024-01-10",
+                "transactionAmount": {
+                    "amount": "-14",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BEYOND BORDER"
+                ]
+            },
+            {
+                "transactionId": "edd61945-1d2f-4ba7-a6ba-45c29de5017e",
+                "entryReference": "edd61945-1d2f-4ba7-a6ba-45c29de5017e",
+                "bookingDate": "2024-01-07",
+                "valueDate": "2024-01-07",
+                "transactionAmount": {
+                    "amount": "-34.4",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BOLT.EU/O/2401072014"
+                ]
+            },
+            {
+                "transactionId": "1ac9fb6f-741c-4cda-9807-e189ccf5f745",
+                "entryReference": "1ac9fb6f-741c-4cda-9807-e189ccf5f745",
+                "bookingDate": "2024-01-04",
+                "valueDate": "2024-01-04",
+                "transactionAmount": {
+                    "amount": "-9.01",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UBER   * EATS PENDING"
+                ]
+            },
+            {
+                "transactionId": "d818e897-f204-4c40-a36d-b89a15e8a359",
+                "entryReference": "d818e897-f204-4c40-a36d-b89a15e8a359",
+                "bookingDate": "2024-01-03",
+                "valueDate": "2024-01-03",
+                "transactionAmount": {
+                    "amount": "-24",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "LA CARAVELLE"
+                ]
+            },
+            {
+                "transactionId": "a5e5edd6-35e8-43a5-8a45-fa7c1bc91c0a",
+                "entryReference": "a5e5edd6-35e8-43a5-8a45-fa7c1bc91c0a",
+                "bookingDate": "2024-01-03",
+                "valueDate": "2024-01-03",
+                "transactionAmount": {
+                    "amount": "-86.4",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SERVICE NAVIGO  4042878"
+                ]
+            },
+            {
+                "transactionId": "1525bd63-de12-4a3b-b953-5a616c32514e",
+                "entryReference": "1525bd63-de12-4a3b-b953-5a616c32514e",
+                "bookingDate": "2024-01-03",
+                "valueDate": "2024-01-03",
+                "transactionAmount": {
+                    "amount": "-31.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "FNAC ST LAZARE"
+                ]
+            },
+            {
+                "transactionId": "b2a5e073-caa7-445b-b450-0136ecac6cf6",
+                "entryReference": "b2a5e073-caa7-445b-b450-0136ecac6cf6",
+                "bookingDate": "2024-01-02",
+                "valueDate": "2024-01-02",
+                "transactionAmount": {
+                    "amount": "-20",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "YOUBA COIFFURE"
+                ]
+            },
+            {
+                "transactionId": "5dbe10fc-398a-4f1f-9ec9-4613e809f548",
+                "entryReference": "5dbe10fc-398a-4f1f-9ec9-4613e809f548",
+                "bookingDate": "2024-01-02",
+                "valueDate": "2024-01-02",
+                "transactionAmount": {
+                    "amount": "-4.6",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "BOULANGERIE PAT"
+                ]
+            },
+            {
+                "transactionId": "daee6d0e-6ce3-4e9a-addd-b397d307ff3e",
+                "entryReference": "daee6d0e-6ce3-4e9a-addd-b397d307ff3e",
+                "bookingDate": "2024-01-01",
+                "valueDate": "2024-01-01",
+                "transactionAmount": {
+                    "amount": "-3.9",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SAPN            4758648"
+                ]
+            },
+            {
+                "transactionId": "4ad6c46f-d0c9-4194-aa11-1b869f88a679",
+                "entryReference": "4ad6c46f-d0c9-4194-aa11-1b869f88a679",
+                "bookingDate": "2024-01-01",
+                "valueDate": "2024-01-01",
+                "transactionAmount": {
+                    "amount": "-6.1",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "SAPN            4758648"
+                ]
+            },
+            {
+                "transactionId": "46009bb2-5f31-4074-9db4-9e8eaaf09567",
+                "entryReference": "46009bb2-5f31-4074-9db4-9e8eaaf09567",
+                "bookingDate": "2024-01-01",
+                "valueDate": "2024-01-01",
+                "transactionAmount": {
+                    "amount": "-61.4",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "UEP*SUPER U PLESTIN LES GREVES"
+                ]
+            },
+            {
+                "transactionId": "fac3e87f-ea0d-418d-a25f-14cf2474cf6d",
+                "entryReference": "fac3e87f-ea0d-418d-a25f-14cf2474cf6d",
+                "bookingDate": "2023-12-27",
+                "valueDate": "2023-12-27",
+                "transactionAmount": {
+                    "amount": "-2.5",
+                    "currency": "EUR"
+                },
+                "remittanceInformationUnstructuredArray": [
+                    "COFIROUTE"
+                ]
+            }
+        ]
+    }
+}

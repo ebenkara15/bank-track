@@ -1,0 +1,50 @@
+site_name: Bank Track 🃏
+site_author: Erwan Benkara <erwan.benkara@gmail.com>
+
+nav:
+  - Home: index.md
+  - Setup & Install: setup-install.md
+  - How-to: how-to-guides.md
+  - Architecture: architecture.md
+  - Reference:
+    - Core: core-ref.md
+    - API: api-ref.md
+    - Infra: infra-ref.md
+  - About: about.md
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+  palette:
+    scheme: default
+    primary: custom
+    accent: amber
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            extensions:
+              - griffe_pydantic:
+                schema: true
+            show_symbol_type_heading: true
+            show_root_full_path: true
+            show_root_heading: true
+            show_symbol_type_toc: true
+
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+extra_css:
+  - stylesheets/extra.css
