@@ -1,8 +1,14 @@
-from typing import Generator, Optional
+import ssl
+from typing import AsyncGenerator, Optional
 
 from loguru import logger
-from sqlalchemy import URL, Engine, MetaData, create_engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import URL, MetaData
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 
 from bank_track.api.conf import Settings
 
@@ -24,7 +30,9 @@ class Database:
             return Database(settings=get_settings())
 
 
-        def get_session(db: Database = Depends(get_db)) -> Generator[Session, None, None]:
+        def get_session(
+            db: Database = Depends(get_db),
+        ) -> Generator[AsyncSession, None, None]:
             yield from db.get_session()
         ```
     """
@@ -39,14 +47,13 @@ class Database:
         self.db_url = db_url
         self._settings = settings
         self._engine = self._create_engine()
-        self._session_factory = sessionmaker(
+        self._session_factory = async_sessionmaker(
             bind=self._engine,
             autoflush=False,
-            autocommit=False,
             expire_on_commit=False,
         )
 
-    def _create_engine(self) -> Engine:
+    def _create_engine(self) -> AsyncEngine:
         """Create a new engine. Used internally to generate sessions.
 
         Returns:
@@ -54,20 +61,21 @@ class Database:
         """
         if self.db_url:
             logger.info(f"Creating DB engine for {self.db_url}")
-            return create_engine(self.db_url)
+            return create_async_engine(self.db_url)
 
+        ssl_context = ssl.create_default_context()
         self.db_url = URL.create(
             drivername=self._settings.DB_ENGINE,
             username=self._settings.DB_USER,
             password=self._settings.DB_PASSWORD,
             host=self._settings.DB_HOST,
             database=self._settings.DB_DATABASE,
-            query={"sslmode": "require"},
+            # query={"sslmode": "require"},
         )
         logger.info(f"Creating DB engine for {self.db_url}")
-        return create_engine(self.db_url)
+        return create_async_engine(self.db_url, connect_args={"ssl": ssl_context})
 
-    def get_session(self) -> Generator[Session, None, None]:
+    async def get_session(self) -> AsyncGenerator[AsyncSession, None]:
         """Returns a new session object. It is designed to be used as a depenedency.
 
         Yields:
@@ -76,37 +84,35 @@ class Database:
         Example:
             ```
             @app.get("/{item_id}")
-            def get_item(item_id: str, session: Session = Depends(db.get_session)):
-                ...
+            def get_item(item_id: str, session: Session = Depends(db.get_session)): ...
             ```
 
         **See Also:**
             api.database.get_session()
         """
-        db = self._session_factory()
-        try:
+        async with self._session_factory() as db:
             yield db
-        finally:
-            db.close()
 
-    def drop_schema(self, metadata: MetaData) -> None:
+    async def drop_schema(self, metadata: MetaData) -> None:
         """Drop every table declared from the MetaData in the target database.
 
         Args:
             metadata (MetaData): The MetaData collection of table.
         """
-        metadata.drop_all(bind=self._engine)
+        async with self._engine.begin() as conn:
+            await conn.run_sync(metadata.drop_all)
 
-    def init_schema(self, metadata: MetaData) -> None:
-        """Create all tables declared from teh MetaData in the target database.
+    async def init_schema(self, metadata: MetaData) -> None:
+        """Create all tables declared from the MetaData in the target database.
 
         It won't recreate tables if the table already exists. Even if the table definition has changes (column addition, change of type, etc.)
 
         Args:
             metadata (MetaData): The table collection.
         """
-        metadata.create_all(bind=self._engine)
+        async with self._engine.begin() as conn:
+            await conn.run_sync(metadata.create_all)
 
     @property
-    def session_factory(self) -> sessionmaker[Session]:
+    def session_factory(self) -> async_sessionmaker[AsyncSession]:
         return self._session_factory

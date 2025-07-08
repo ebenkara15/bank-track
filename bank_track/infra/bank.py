@@ -1,6 +1,4 @@
-import json
-
-import requests
+import httpx
 from pydantic import BaseModel
 
 
@@ -32,8 +30,8 @@ class GoCardlessTokenManager:
             "accept": "application/json",
             "Content-Type": "application/json",
         }
-        self.secret_id = secret_id
-        self.secret_key = secret_key
+        self.__secret_id = secret_id
+        self.__secret_key = secret_key
         self.token: GoCardlessToken | None = None
         # TODO: add support for refresh token
 
@@ -41,10 +39,12 @@ class GoCardlessTokenManager:
         """Renew the GoCardless API token"""
 
         url = f"{self.BASE_ENDPOINT}/token/new/"
-        data = json.dumps({"secret_id": self.secret_id, "secret_key": self.secret_key})
-        response = requests.post(url, data=data, headers=self.headers)
+        data = {"secret_id": self.__secret_id, "secret_key": self.__secret_key}
 
-        if not response.ok:
+        with httpx.Client(follow_redirects=True, timeout=10) as client:
+            response = client.post(url, headers=self.headers, json=data)
+
+        if not response.status_code < 400:
             response.raise_for_status()
 
         return GoCardlessToken(**response.json())
@@ -75,8 +75,9 @@ class GoCardlessClient:
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.token_manager.get_token()}",
         }
+        self._client = httpx.AsyncClient(follow_redirects=True, timeout=10)
 
-    def get_institutions_by_country(self, country: str) -> list:
+    async def get_institutions_by_country(self, country: str) -> list:
         """Returns all the institutions for given a country.
 
         Args:
@@ -87,22 +88,22 @@ class GoCardlessClient:
 
         Example:
             ```
-            >>> client.get_institutions_by_country(country="US")
-            >>> client.get_institutions_by_country(country="FR")
-            >>> client.get_institutions_by_country(country="de")
+            >>> await client.get_institutions_by_country(country="US")
+            >>> await client.get_institutions_by_country(country="FR")
+            >>> await client.get_institutions_by_country(country="de")
             ```
         """
-        response = requests.get(
+        response = await self._client.get(
             f"{self.BASE_ENDPOINT}/institutions/",
             headers=self.headers,
             params={"country": country.lower()},
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         return response.json()
 
-    def get_institution_by_id(self, institution_id: str) -> dict:
+    async def get_institution_by_id(self, institution_id: str) -> dict:
         """Return instutition details for a given institution ID.
 
         Args:
@@ -111,16 +112,16 @@ class GoCardlessClient:
         Returns:
             dict: The institution details.
         """
-        response = requests.get(
+        response = await self._client.get(
             f"{self.BASE_ENDPOINT}/institutions/{institution_id}",
             headers=self.headers,
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         return response.json()
 
-    def create_agreement(self, institution_id: str) -> dict:
+    async def create_agreement(self, institution_id: str) -> dict:
         """Create a new agreement.
 
         Args:
@@ -129,23 +130,21 @@ class GoCardlessClient:
         Returns:
             dict: The agreement for the given institution.
         """
-        response = requests.post(
+        response = await self._client.post(
             f"{self.BASE_ENDPOINT}/agreements/enduser/",
             headers=self.headers,
-            data=json.dumps(
-                {
-                    "institution_id": institution_id,
-                    "max_historical_days": 90,
-                    "access_valid_for_days": 180,
-                }
-            ),
+            data={
+                "institution_id": institution_id,
+                "max_historical_days": 90,
+                "access_valid_for_days": 180,
+            },
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         return response.json()
 
-    def create_requisition(self, institution_id: str, agreement_id: str) -> dict:
+    async def create_requisition(self, institution_id: str, agreement_id: str) -> dict:
         """Generate a new agreement that must be accepted by the enduser.
 
         Args:
@@ -155,23 +154,21 @@ class GoCardlessClient:
         Returns:
             dict: The requisition for the given institution ID and agreement ID.
         """
-        response = requests.post(
+        response = await self._client.post(
             f"{self.BASE_ENDPOINT}/requisitions/",
             headers=self.headers,
-            data=json.dumps(
-                {
-                    "institution_id": institution_id,
-                    "agreement": agreement_id,
-                    "redirect": self.redirect_url,
-                }
-            ),
+            data={
+                "institution_id": institution_id,
+                "agreement": agreement_id,
+                "redirect": self.redirect_url,
+            },
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         return response.json()
 
-    def get_requisition(self, requisition_id: str) -> dict:
+    async def get_requisition(self, requisition_id: str) -> dict:
         """Returns the requisition details.
 
         Args:
@@ -180,17 +177,17 @@ class GoCardlessClient:
         Returns:
             dict: The requisition details.
         """
-        response = requests.get(
+        response = await self._client.get(
             f"{self.BASE_ENDPOINT}/requisitions/{requisition_id}",
             headers=self.headers,
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         data = response.json()
         return data["accounts"]
 
-    def get_account_detail(self, account_id) -> dict:
+    async def get_account_detail(self, account_id) -> dict:
         """Returns account details for the given account.
 
         Args:
@@ -199,11 +196,11 @@ class GoCardlessClient:
         Returns:
             dict: The account details.
         """
-        response = requests.get(
+        response = await self._client.get(
             f"{self.BASE_ENDPOINT}/accounts/{account_id}/details/",
             headers=self.headers,
         )
-        if not response.ok:
+        if not response.status_code < 400:
             response.raise_for_status()
 
         account = response.json()

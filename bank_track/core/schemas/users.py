@@ -2,8 +2,8 @@ from uuid import UUID
 
 from pydantic import Field
 
-from bank_track.core.models.accounts import Account
-from bank_track.core.models.base import BaseDomainModel
+from bank_track.core.schemas.accounts import Account
+from bank_track.core.schemas.base import BaseDomainModel
 
 
 class ClerkBaseUser(BaseDomainModel):

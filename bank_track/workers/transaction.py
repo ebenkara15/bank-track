@@ -1,9 +1,9 @@
 from typing import Type
 
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from bank_track.core.adapters import TransactionSQLService
-from bank_track.core.models.transactions import TransactionCreate
+from bank_track.core.schemas.transactions import TransactionCreate
+from bank_track.services.crud import TransactionSQLService
 from bank_track.workers.base import Worker, log_worker
 
 
@@ -14,7 +14,7 @@ class TransactionWorker(Worker[TransactionCreate, TransactionSQLService]):
         self,
         access_token: str,
         model: Type[TransactionCreate],
-        sql_session: Session,
+        sql_session: AsyncSession,
         service: Type[TransactionSQLService],
         endpoint_params: dict,
         account_id: str,
@@ -25,7 +25,7 @@ class TransactionWorker(Worker[TransactionCreate, TransactionSQLService]):
         self.user_id = user_id
 
     @log_worker
-    def format(self) -> None:
+    async def format(self) -> None:
         booked_txns = self._format_booked_transactions(
             self._raw_data["transactions"].get("booked", [])
         )

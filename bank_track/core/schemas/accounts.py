@@ -4,13 +4,13 @@ from uuid import UUID
 
 from pydantic import Field
 
-from bank_track.core.models.base import BaseDomainModel
-from bank_track.core.models.types import CashAccountType, CurrencyType
+from bank_track.core.schemas.base import BaseDomainModel
+from bank_track.core.schemas.types import CashAccountType, CurrencyType
 
 if TYPE_CHECKING:
-    from bank_track.core.models.balances import Balance
-    from bank_track.core.models.transactions import Transaction
-    from bank_track.core.models.users import ClerkBaseUser
+    from bank_track.core.schemas.balances import Balance
+    from bank_track.core.schemas.transactions import Transaction
+    from bank_track.core.schemas.users import ClerkBaseUser
 
 
 class Account(BaseDomainModel, use_enum_values=True):

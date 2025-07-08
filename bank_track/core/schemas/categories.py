@@ -3,10 +3,10 @@ from uuid import UUID, uuid4
 
 from pydantic import Field
 
-from bank_track.core.models.base import BaseDomainModel
+from bank_track.core.schemas.base import BaseDomainModel
 
 if TYPE_CHECKING:
-    from bank_track.core.models.transactions import Transaction
+    pass
 
 
 class ExpenseCategory(BaseDomainModel, use_enum_values=True):

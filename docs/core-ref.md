@@ -2,41 +2,36 @@
 
 The reference implementations of the domain part of the projet.
 
-## Adapters
-
-::: bank_track.core.adapters
-    options:
-        show_if_no_docstring: true
 
 ## Domain Models
 
-::: bank_track.core.models.base
+::: bank_track.core.schemas.base
     options:
         show_if_no_docstring: true
 
-::: bank_track.core.models.accounts
+::: bank_track.core.schemas.accounts
     options:
         show_if_no_docstring: true
 
-::: bank_track.core.models.balances
+::: bank_track.core.schemas.balances
     options:
         show_if_no_docstring: true
 
-::: bank_track.core.models.categories
+::: bank_track.core.schemas.categories
     options:
         show_if_no_docstring: true
 
-::: bank_track.core.models.transactions
+::: bank_track.core.schemas.transactions
     options:
         show_if_no_docstring: true
 
-::: bank_track.core.models.users
+::: bank_track.core.schemas.users
     options:
         show_if_no_docstring: true
 
 ### Types & Enums
 
-::: bank_track.core.models.types
+::: bank_track.core.schemas.types
     options:
         show_if_no_docstring: true
 

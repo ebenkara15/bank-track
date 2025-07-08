@@ -1,9 +1,9 @@
 from typing import Type
 
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from bank_track.core.adapters import BalanceSQLService
-from bank_track.core.models.balances import BalanceCreate
+from bank_track.core.schemas.balances import BalanceCreate
+from bank_track.services.crud import BalanceSQLService
 from bank_track.workers.base import Worker, log_worker
 
 
@@ -16,7 +16,7 @@ class BalanceWorker(Worker[BalanceCreate, BalanceSQLService]):
         self,
         access_token: str,
         model: Type[BalanceCreate],
-        sql_session: Session,
+        sql_session: AsyncSession,
         service: Type[BalanceSQLService],
         endpoint_params: dict,
         account_id: str,
@@ -27,7 +27,7 @@ class BalanceWorker(Worker[BalanceCreate, BalanceSQLService]):
         self.user_id = user_id
 
     @log_worker
-    def format(self) -> None:
+    async def format(self) -> None:
         formatted_balances = []
 
         for balance in self._raw_data.get("balances", []):

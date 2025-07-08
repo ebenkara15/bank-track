@@ -2,20 +2,20 @@ from abc import ABC, abstractmethod
 from functools import wraps
 from typing import Any, Callable, ClassVar, Generic, List, Type, TypeVar
 
-import requests
+import httpx
 from loguru import logger as logging
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from bank_track.core.adapters import BaseSQLService
-from bank_track.core.models.base import BaseDomainModel
+from bank_track.core.schemas.base import BaseDomainModel
+from bank_track.services.crud import BaseSQLService
 from bank_track.workers.errors import GoCardlessExceptionHandler
 
 
 def log_worker(func: Callable):
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    async def wrapper(*args, **kwargs):
         logging.info(f"Starting {func.__name__}")
-        func(*args, **kwargs)
+        await func(*args, **kwargs)
         logging.success(f"Finished {func.__name__}")
 
     return wrapper
@@ -25,23 +25,16 @@ class BaseWorker(ABC):
     ENDPOINT: ClassVar[str]
 
     @abstractmethod
-    @log_worker
-    def fetch(self) -> None:
-        ...
+    async def fetch(self) -> None: ...
 
     @abstractmethod
-    @log_worker
-    def format(self) -> None:
-        ...
+    async def format(self) -> None: ...
 
     @abstractmethod
-    @log_worker
-    def save(self) -> None:
-        ...
+    async def save(self) -> None: ...
 
     @abstractmethod
-    def run(self) -> None:
-        ...
+    async def run(self) -> None: ...
 
 
 M = TypeVar("M", bound=BaseDomainModel)
@@ -55,7 +48,7 @@ class Worker(Generic[M, S], BaseWorker):
         self,
         access_token: str,
         model: Type[M],
-        sql_session: Session,
+        sql_session: AsyncSession,
         service: Type[S],
         endpoint_params: dict,
     ) -> None:
@@ -74,17 +67,19 @@ class Worker(Generic[M, S], BaseWorker):
         self._data: List[M] = []
 
     @log_worker
-    def fetch(self) -> None:
+    async def fetch(self) -> None:
         """Fetch data from the GoCardless API.
 
         Returns nothing but update the `self._data` variable.
         """
-        response = requests.get(
-            self.endpoint,
-            headers={"Authorization": f"Bearer {self.access_token}"},
-        )
 
-        if not response.ok:
+        async with httpx.AsyncClient(follow_redirects=True, timeout=10) as client:
+            response = await client.get(
+                self.endpoint,
+                headers={"Authorization": f"Bearer {self.access_token}"},
+            )
+
+        if not response.status_code < 400:
             error_details = response.json()
             logging.error(f"Failed to fetch data. {error_details['detail']}")
             GoCardlessExceptionHandler.handle(error_details)
@@ -93,20 +88,20 @@ class Worker(Generic[M, S], BaseWorker):
         self._raw_data = response.json()
 
     @log_worker
-    def format(self) -> None:
+    async def format(self) -> None:
         raise NotImplementedError
 
     @log_worker
-    def save(self) -> None:
+    async def save(self) -> None:
         logging.info(f"Saving {len(self._data)} {self.model.__name__}")
         for d in self._data:
             try:
-                self.svc.upsert(d)  # type: ignore
+                await self.svc.upsert(d)  # type: ignore
             except Exception as e:
                 logging.exception(f"Error while saving {self.model.__name__}")
                 raise e
 
-    def run(self) -> None:
-        self.fetch()
-        self.format()
-        self.save()
+    async def run(self):
+        await self.fetch()
+        await self.format()
+        await self.save()

@@ -10,8 +10,8 @@ GO_CARDLESS_ENDPOINT = "https://bankaccountdata.gocardless.com/api/v2"
 def test_go_cardless_token_manager_object_vars():
     token_mgr = GoCardlessTokenManager("secret_id", "secret_key")
 
-    assert token_mgr.secret_id == "secret_id"
-    assert token_mgr.secret_key == "secret_key"
+    assert token_mgr.__secret_id == "secret_id"
+    assert token_mgr.__secret_key == "secret_key"
     assert token_mgr.headers == {
         "accept": "application/json",
         "Content-Type": "application/json",

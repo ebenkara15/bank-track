@@ -1,9 +1,11 @@
+import asyncio
+
 from bank_track.api.database import get_settings
-from bank_track.core.adapters import BalanceSQLService, TransactionSQLService
-from bank_track.core.models.balances import BalanceCreate
-from bank_track.core.models.transactions import TransactionCreate
+from bank_track.core.schemas.balances import BalanceCreate
+from bank_track.core.schemas.transactions import TransactionCreate
 from bank_track.infra.bank import GoCardlessTokenManager
 from bank_track.infra.db import Database
+from bank_track.services.crud import BalanceSQLService, TransactionSQLService
 
 PROVIDER_IDS = [
     "44014b00-ad9e-49dd-8f95-a27570f73d9f",
@@ -141,39 +143,47 @@ ACCOUNT_IDS = [
 
 
 if __name__ == "__main__":
-    # Call the worker
-    from bank_track.workers import BalanceWorker, TransactionWorker
 
-    settings = get_settings()
+    async def main():
+        from bank_track.workers import BalanceWorker, TransactionWorker
 
-    token_mgr = GoCardlessTokenManager(
-        secret_id=settings.GOC_SECRET_ID, secret_key=settings.GOC_SECRET_KEY
-    )
-    ACCESS_TOKEN = token_mgr.get_token()
-    db = Database(settings=settings)
-    session = next(db.get_session())
+        settings = get_settings()
 
-    for account_id, provider_id in zip(ACCOUNT_IDS, PROVIDER_IDS):
-        txn_worker = TransactionWorker(
-            access_token=ACCESS_TOKEN,
-            model=TransactionCreate,
-            sql_session=session,
-            service=TransactionSQLService,
-            endpoint_params={"provider_id": provider_id},
-            account_id=account_id,
-            user_id="user_2beBRbftCVlzLy99xiHItXarTKF",
+        token_mgr = GoCardlessTokenManager(
+            secret_id=settings.GOC_SECRET_ID, secret_key=settings.GOC_SECRET_KEY
         )
-        txn_worker.run()
+        ACCESS_TOKEN = await token_mgr.get_token()
+        db = Database(settings=settings)
+        session = await anext(db.get_session())
 
-        blc_worker = BalanceWorker(
-            access_token=ACCESS_TOKEN,
-            model=BalanceCreate,
-            sql_session=session,
-            service=BalanceSQLService,
-            endpoint_params={"provider_id": provider_id},
-            account_id=account_id,
-            user_id="user_2beBRbftCVlzLy99xiHItXarTKF",
-        )
-        blc_worker.run()
+        tasks = []
+
+        for account_id, provider_id in zip(ACCOUNT_IDS, PROVIDER_IDS):
+            txn_worker = TransactionWorker(
+                access_token=ACCESS_TOKEN,
+                model=TransactionCreate,
+                sql_session=session,
+                service=TransactionSQLService,
+                endpoint_params={"provider_id": provider_id},
+                account_id=account_id,
+                user_id="user_2beBRbftCVlzLy99xiHItXarTKF",
+            )
+
+            blc_worker = BalanceWorker(
+                access_token=ACCESS_TOKEN,
+                model=BalanceCreate,
+                sql_session=session,
+                service=BalanceSQLService,
+                endpoint_params={"provider_id": provider_id},
+                account_id=account_id,
+                user_id="user_2beBRbftCVlzLy99xiHItXarTKF",
+            )
+
+            tasks += [txn_worker.run(), blc_worker.run()]
+
+        await asyncio.gather(*tasks)
+        await session.close_all()
+
+    asyncio.run(main=main())
 
     print("Dummy")

@@ -1,45 +1,58 @@
+from typing import Annotated
+
 from fastapi import Depends, HTTPException, Response
 from fastapi.routing import APIRouter
 from loguru import logger
 from pydantic_extra_types.country import CountryAlpha2
 
-from bank_track.api.database import get_service
+from bank_track.api.database import get_service, get_settings
+from bank_track.api.page import PaginatedResponse
+from bank_track.api.query import OrderingDep, PaginateDep
 from bank_track.api.security import get_user_id
-from bank_track.core.adapters import AccountSQLService, RequisitionSQLService
-from bank_track.core.models.accounts import AccountCreate, AccountRead
-from bank_track.core.models.users import AccountsRequisition
+from bank_track.core.schemas.accounts import AccountCreate, AccountRead
+from bank_track.core.schemas.users import AccountsRequisition
 from bank_track.infra.bank import GoCardlessClient, GoCardlessTokenManager
+from bank_track.services.crud import AccountSQLService, RequisitionSQLService
 
 router = APIRouter(prefix="/accounts", tags=["accounts"])
 
 
-API_KEYS = {
-    "secret_id": "ceeeabc1-5e3c-43fb-a0cb-db00c1d5873a",
-    "secret_key": "8d4f605b58c8aeb9a79085aa15981c3888799e7f55974a72b7f7d7c07aa3091114e9101a1a39a38bd0af3d7d8a5f55db7cd541f5b148bdab63888bd6f20e3049",
-}
+settings = get_settings()
 
+API_KEYS = {
+    "secret_id": settings.GOC_SECRET_ID,
+    "secret_key": settings.GOC_SECRET_KEY,
+}
 token_mgr = GoCardlessTokenManager(**API_KEYS)
 client = GoCardlessClient(token_manager=token_mgr)
 
 
-@router.get("/institutions/{country}")
-def get_institutions(country: CountryAlpha2) -> list[dict]:
+@router.get(
+    "/institutions/{country}", description="Get the institution for a given `country`."
+)
+async def get_institutions(country: CountryAlpha2) -> list[dict]:
     if country:
-        return client.get_institutions_by_country(country=country)
+        return await client.get_institutions_by_country(country=country)
     raise HTTPException(status_code=404, detail="Country not found")
 
 
-@router.post("/{institution_id}/agreement")
-def create_agreement(
+@router.post(
+    "/{institution_id}/agreement",
+    description="Create a new agreement given an `institution_id` for the connect user.",
+)
+async def create_agreement(
     institution_id: str,
-    svc: RequisitionSQLService = Depends(get_service(RequisitionSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[RequisitionSQLService, Depends(get_service(RequisitionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> dict:
+    if not user_id:
+        raise HTTPException(status_code=404, detail="User not found")
+
     if institution_id:
         # TODO:  Store the agreement in the database
-        agreement = client.create_agreement(institution_id)
+        agreement = await client.create_agreement(institution_id)
         agreement_id = agreement["id"]
-        requisition = client.create_requisition(institution_id, agreement_id)
+        requisition = await client.create_requisition(institution_id, agreement_id)
 
         req = AccountsRequisition(
             user_id=user_id,
@@ -47,30 +60,39 @@ def create_agreement(
             institution_id=institution_id,
             agreement_id=agreement_id,
         )
-        svc.create(req)
+        await svc.create(req)
         return requisition
 
     raise HTTPException(status_code=404, detail="Institution not found")
 
 
-@router.post("/requisition/accept/{ref}")
-def create_requisition(
-    ref: str,
-    requisition_svc: RequisitionSQLService = Depends(get_service(RequisitionSQLService)),
-    account_svc: AccountSQLService = Depends(get_service(AccountSQLService)),
-    user_id: str = Depends(get_user_id),
+@router.post(
+    "/requisition/accept/{requisition_id}",
+    description="Create a new requistion given the `agreement_id` for the connected user",
+)
+async def create_requisition(
+    requisition_id: str,
+    requisition_svc: Annotated[
+        RequisitionSQLService, Depends(get_service(RequisitionSQLService))
+    ],
+    account_svc: Annotated[AccountSQLService, Depends(get_service(AccountSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> Response:
-    logger.info(f"Requisition ref: {ref}")
+    logger.info(f"Requisition ref: {requisition_id}")
+    if not user_id:
+        raise HTTPException(status_code=404, detail="User not found")
 
-    if ref:
-        req = requisition_svc.get_by(user_id=user_id, requisition_id=ref)
+    if requisition_id:
+        req = await requisition_svc.get_by(
+            user_id=user_id, requisition_id=requisition_id
+        )
         if req:
             req.accepted = True
-            requisition_svc.update(req)
-            account_ids = client.get_requisition(requisition_id=ref)
+            await requisition_svc.update(req)
+            account_ids = await client.get_requisition(requisition_id=requisition_id)
 
             for account_id in account_ids:
-                account_data = client.get_account_detail(account_id)
+                account_data = await client.get_account_detail(account_id)
                 account = AccountCreate(
                     provider_id=account_id,
                     account_id=account_data.get("resourceId"),
@@ -84,40 +106,58 @@ def create_requisition(
                     usage=account_data.get("usage", "PRIV"),
                     access=True,
                 )
-                account_svc.create(account)
+                await account_svc.create(account)
             return Response(status_code=200)
     raise HTTPException(status_code=404, detail="Requisition not found")
 
 
-@router.get("/{account_id}")
-def get_account(
+@router.get(
+    "/{account_id}",
+    description="Get the account given the `account_id` for the connected user.",
+)
+async def get_account(
     account_id: str,
-    svc: AccountSQLService = Depends(get_service(AccountSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[AccountSQLService, Depends(get_service(AccountSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> AccountRead | None:
-    if user_id:
-        return svc.get_by(user_id=user_id, account_id=account_id)
-    raise HTTPException(status_code=404, detail="User not found")
+    if not user_id:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return await svc.get_by(user_id=user_id, account_id=account_id)
 
 
-@router.get("/")
-def get_user_accounts(
-    svc: AccountSQLService = Depends(get_service(AccountSQLService)),
-    user_id=Depends(get_user_id),
-) -> list[AccountRead] | AccountRead | None:
-    if user_id:
-        accounts = svc.list_by(user_id=user_id)
-        return accounts
-    raise HTTPException(status_code=404, detail="User not found")
+@router.get("/", description="List all accounts for the connected user.")
+async def get_user_accounts(
+    svc: Annotated[AccountSQLService, Depends(get_service(AccountSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
+    ordering: OrderingDep,
+    paginate: PaginateDep
+    # ordering: Annotated[
+    #     OrderingFilter,
+    #     Query(description="The base ordering to use for results."),
+    # ],
+    # paginate: Annotated[
+    #     bool, Query(description="Whether to paginate response or not.")
+    # ] = False,
+) -> list[AccountRead] | PaginatedResponse[AccountRead]:
+    if not user_id:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return await svc.list_by(ordering=ordering, paginate=paginate, user_id=user_id)
 
 
-@router.post("/")
-def create_account(
+@router.post("/", description="Create a new account for the connected user.")
+async def create_account(
     account: AccountCreate,
-    svc: AccountSQLService = Depends(get_service(AccountSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[AccountSQLService, Depends(get_service(AccountSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> AccountRead:
+    if not user_id:
+        raise HTTPException(status_code=404, detail="User not found")
     if account.user_id != user_id:
-        raise HTTPException(status_code=403, detail="Not enough permissions")
+        raise HTTPException(
+            status_code=403,
+            detail="Not enough permissions. The current account must be owned by the current user.",
+        )
     else:
-        return svc.create(account)
+        return await svc.create(account)

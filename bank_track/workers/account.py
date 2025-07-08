@@ -1,9 +1,9 @@
 from typing import Type
 
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from bank_track.core.adapters import AccountSQLService
-from bank_track.core.models.accounts import AccountCreate
+from bank_track.core.schemas.accounts import AccountCreate
+from bank_track.services.crud import AccountSQLService
 from bank_track.workers.base import Worker, log_worker
 
 
@@ -16,7 +16,7 @@ class AccountWorker(Worker[AccountCreate, AccountSQLService]):
         self,
         access_token: str,
         model: Type[AccountCreate],
-        sql_session: Session,
+        sql_session: AsyncSession,
         service: Type[AccountSQLService],
         endpoint_params: dict,
         account_id: str,
@@ -27,7 +27,7 @@ class AccountWorker(Worker[AccountCreate, AccountSQLService]):
         self.user_id = user_id
 
     @log_worker
-    def format(self) -> None:
+    async def format(self) -> None:
         detail: dict[str, str] = self._raw_data.get("account", {})
 
         self._data = [

@@ -17,9 +17,10 @@ from sqlalchemy import (
     Uuid,
     create_engine,
 )
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
-from bank_track.core.models.types import BalanceType, CashAccountType, CurrencyType
+from bank_track.core.schemas.types import BalanceType, CashAccountType, CurrencyType
 
 
 class BaseSQLModel(DeclarativeBase):
@@ -32,8 +33,14 @@ class BaseSQLModel(DeclarativeBase):
 class UserSQL(BaseSQLModel):
     __tablename__ = "users"
 
-    user_id = Column(Text, primary_key=True, index=True)
-    accounts = relationship("AccountSQL", back_populates="user", lazy="selectin")
+    user_id: Mapped[str] = mapped_column(Text, primary_key=True, index=True)
+    accounts: Mapped["AccountSQL"] = relationship(
+        "AccountSQL", back_populates="user", lazy="selectin"
+    )
+
+    @hybrid_property
+    def id(self) -> str:
+        return self.user_id
 
 
 class UserScopeMixin:
@@ -63,9 +70,11 @@ class AccountSQL(BaseSQLModel, UserScopeMixin):
     # Relationships
     user: Mapped["UserSQL"] = relationship(back_populates="accounts")
     balances: Mapped[list["BalanceSQL"]] = relationship(back_populates="account")
-    transactions: Mapped[list["TransactionSQL"]] = relationship(
-        back_populates="account"
-    )
+    transactions: Mapped[list["TransactionSQL"]] = relationship(back_populates="account")
+
+    @hybrid_property
+    def id(self) -> str:
+        return self.account_id
 
 
 class BalanceSQL(BaseSQLModel, UserScopeMixin):
@@ -89,6 +98,10 @@ class BalanceSQL(BaseSQLModel, UserScopeMixin):
         String, ForeignKey("accounts.account_id"), index=True
     )
     account: Mapped["AccountSQL"] = relationship(back_populates="balances")
+
+    @hybrid_property
+    def id(self) -> UUID:
+        return self.balance_id
 
 
 transaction_category_link = Table(
@@ -123,6 +136,10 @@ class ExpenseCategorySQL(BaseSQLModel, UserScopeMixin):
         back_populates="categories",
         secondary=transaction_category_link,
     )
+
+    @hybrid_property
+    def id(self) -> UUID:
+        return self.category_id
 
     __table_args__ = (
         UniqueConstraint(
@@ -160,6 +177,10 @@ class TransactionSQL(BaseSQLModel, UserScopeMixin):
         "AccountSQL", back_populates="transactions"
     )
 
+    @hybrid_property
+    def id(self) -> UUID:
+        return self.transaction_id
+
 
 class RequisitionSQL(BaseSQLModel, UserScopeMixin):
     __tablename__ = "requisitions"
@@ -172,6 +193,10 @@ class RequisitionSQL(BaseSQLModel, UserScopeMixin):
     last_modified: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.now, onupdate=datetime.now
     )
+
+    @hybrid_property
+    def id(self) -> UUID:
+        return self.requisition_id
 
 
 if __name__ == "__main__":

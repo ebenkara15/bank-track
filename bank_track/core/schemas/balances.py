@@ -5,11 +5,11 @@ from uuid import UUID, uuid4
 
 from pydantic import Field
 
-from bank_track.core.models.base import BaseDomainModel
-from bank_track.core.models.types import CurrencyType
+from bank_track.core.schemas.base import BaseDomainModel
+from bank_track.core.schemas.types import CurrencyType
 
 if TYPE_CHECKING:
-    from bank_track.core.models.accounts import Account
+    from bank_track.core.schemas.accounts import Account
 
 
 class Balance(BaseDomainModel, use_enum_values=True):

@@ -10,6 +10,7 @@ nav:
     - Core: core-ref.md
     - API: api-ref.md
     - Infra: infra-ref.md
+    - Services: service-ref.md
   - About: about.md
 
 theme:

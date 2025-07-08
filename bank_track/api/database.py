@@ -1,12 +1,12 @@
 from functools import lru_cache
-from typing import Callable, Generator, Type, TypeVar
+from typing import AsyncGenerator, Callable, Type, TypeVar
 
 from fastapi import Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from bank_track.api.conf import Settings
-from bank_track.core.adapters import BaseSQLService
 from bank_track.infra.db import Database
+from bank_track.services.crud import BaseSQLService
 
 
 @lru_cache
@@ -32,7 +32,9 @@ def get_db() -> Database:
     return Database(settings=get_settings())
 
 
-def get_session(db: Database = Depends(get_db)) -> Generator[Session, None, None]:
+async def get_session(
+    db: Database = Depends(get_db),
+) -> AsyncGenerator[AsyncSession, None]:
     """Yields a new database session. Mostly use as a dependency.
 
     Args:
@@ -41,13 +43,14 @@ def get_session(db: Database = Depends(get_db)) -> Generator[Session, None, None
     Yields:
         Generator[Session, None, None]: The new database session.
     """
-    yield from db.get_session()
+    async for session in db.get_session():
+        yield session
 
 
 T = TypeVar("T", bound=BaseSQLService)
 
 
-def get_service(service_cls: Type[T]) -> Callable[[Session], T]:
+def get_service(service_cls: Type[T]) -> Callable[[AsyncSession], T]:
     """Returns a new instance of the service class specified initiated with a database session.
 
     Args:
@@ -57,7 +60,7 @@ def get_service(service_cls: Type[T]) -> Callable[[Session], T]:
         Callable[[Session], T]: A new instance.
     """
 
-    def _get_service(session: Session = Depends(get_session)) -> T:
-        return service_cls(sql_session=session)
+    def _get_service(session: AsyncSession = Depends(get_session)) -> T:
+        return service_cls(session=session)
 
     return _get_service

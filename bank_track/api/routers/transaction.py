@@ -1,19 +1,19 @@
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Optional
 from uuid import UUID
 
-from fastapi import Body, Depends, HTTPException, Path, Query
+from fastapi import Body, Depends, Path, Query
 from fastapi.routing import APIRouter
 
 from bank_track.api.database import get_service
-from bank_track.api.exceptions import raise_on_no_return
-from bank_track.api.security import get_user_id
-from bank_track.core.adapters import TransactionSQLService
-from bank_track.core.models.sql import TransactionSQL
-from bank_track.core.models.transactions import (
+from bank_track.api.page import PaginatedResponse
+from bank_track.api.query import DateRangeDep, OrderingDep, PaginateDep
+from bank_track.api.security import check_ownership, get_user_id
+from bank_track.core.schemas.transactions import (
     TransactionCreate,
     TransactionRead,
     TransactionUpdate,
 )
+from bank_track.services.crud import ExpenseCategorySQLService, TransactionSQLService
 
 router = APIRouter(
     prefix="/transactions",
@@ -23,122 +23,129 @@ router = APIRouter(
 
 @router.get(
     "/{transaction_id}",
-    description="Get a transaction by its ID. The transaction must be belong to the connected user through his JWT.",
+    description="Get a transaction by its ID. The transaction must belong to the connected user through his JWT.",
 )
-@raise_on_no_return
-def get_transaction(
+async def get_transaction(
     transaction_id: Annotated[
         UUID, Path(description="The ID of the transaction. Must be a UUID.")
     ],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
+    user_id: Annotated[str, Depends(get_user_id)],
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
 ) -> Optional[TransactionRead]:
-    if user_id:
-        return svc.get_by(user_id=user_id, transaction_id=transaction_id)
-    raise HTTPException(status_code=404, detail="User not found")
+    return await svc.get_by(user_id=user_id, transaction_id=transaction_id)
 
 
 @router.get(
     "/",
-    description="List all transactions that belong to the connected user through his JWT. Result is sorted by the time of the transactions.",
+    description="List transactions that belong to the connected user through his JWT.",
 )
-def get_all_transactions(
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
-    limit: Annotated[
-        int, Query(description="Maximum number of transactions to retrieve.")
-    ] = 100,
-    # order_by: TransactionSQL = TransactionSQL.value_date,
-    sort_type: Annotated[
-        Literal["asc", "desc"] | None,
-        Query(description="The sort direction. One of `'asc'` or `'desc'`"),
-    ] = "desc",
-) -> list[TransactionRead]:
-    if user_id:
-        return svc.list_by(
-            user_id=user_id,
-            limit=limit,
-            order_by=TransactionSQL.value_date,
-            sort_type=sort_type,
-        )
-    raise HTTPException(status_code=404, detail="User not found")
+async def get_all_transactions(
+    date_range: DateRangeDep,
+    ordering: OrderingDep,
+    paginate: PaginateDep,
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
+) -> list[TransactionRead] | PaginatedResponse[TransactionRead]:
+    return await svc.list_by(
+        ordering=ordering,
+        paginate=paginate,
+        user_id=user_id,
+        value_date__gte=date_range.date_from,
+        value_date__lte=date_range.date_to,
+    )
 
 
 @router.get(
     "/accounts/{account_id}",
-    description="List all transactions for the given `account_id` for the connected user through his JWT.",
+    description="List all transactions for the given `account_id` and that belong to the connected user through his JWT.",
 )
-def list_transactions_by_account(
+async def list_transactions_by_account(
     account_id: Annotated[str, Path(description="The ID of the account.")],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
-) -> list[TransactionRead]:
-    if user_id:
-        return svc.list_by(account_id=account_id, user_id=user_id)
-
-    raise HTTPException(status_code=404, detail="User not found")
+    date_range: DateRangeDep,
+    ordering: OrderingDep,
+    paginate: PaginateDep,
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
+) -> list[TransactionRead] | PaginatedResponse[TransactionRead]:
+    return await svc.list_by(
+        ordering=ordering,
+        paginate=paginate,
+        account_id=account_id,
+        user_id=user_id,
+        value_date__gte=date_range.date_from,
+        value_date__lte=date_range.date_to,
+    )
 
 
 @router.get(
     "/accounts/f/",
     description="List all transactions for the given list of account ID for the connected user through his JWT.",
 )
-def list_transactions_by_accounts(
+async def list_transactions_by_accounts(
+    date_range: DateRangeDep,
+    ordering: OrderingDep,
+    paginate: PaginateDep,
     account_ids: Annotated[
         list[str],
         Query(description="The account IDs from which to retrieve the transactions"),
     ],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
-) -> list[TransactionRead]:
-    if user_id:
-        return svc.list_by(account_id=account_ids, user_id=user_id)
-
-    raise HTTPException(status_code=404, detail="User not found")
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
+) -> list[TransactionRead] | PaginatedResponse[TransactionRead]:
+    return await svc.list_by(
+        ordering=ordering,
+        paginate=paginate,
+        user_id=user_id,
+        account_id=account_ids,
+        value_date__gte=date_range.date_from,
+        value_date__lte=date_range.date_to,
+    )
 
 
 @router.post(
-    "/", description="Create a transaction for the connected user through his JWT."
+    "/",
+    description="Create a transaction for the connected user through his JWT.",
 )
-def create_transaction(
+async def create_transaction(
     transaction: Annotated[
         TransactionCreate, Body(description="The transaction to create.")
     ],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> TransactionRead:
-    if user_id:
-        transaction.user_id = user_id
-        return svc.create(transaction)
-
-    raise HTTPException(status_code=404, detail="User not found")
+    transaction.user_id = user_id
+    return await svc.create(transaction)
 
 
 @router.put(
-    "/", description="Update a transaction for the connected user through his JWT."
+    "/",
+    description="Update a transaction for the connected user through his JWT.",
 )
-def update_transaction(
+async def update_transaction(
     transaction: Annotated[
         TransactionUpdate,
         Body(
             description="The updated transaction. The previous transaction is identified by the `TransactionUpdate.transaction_id` field."
         ),
     ],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> Optional[TransactionRead]:
-    if user_id:
-        transaction.user_id = user_id
-        return svc.update(transaction)
-
-    raise HTTPException(status_code=404, detail="User not found")
+    transaction.user_id = user_id
+    await check_ownership(
+        svc=svc,
+        resource_id=transaction.id,
+        user_id=user_id,
+        account_id=transaction.account_id,
+    )
+    return await svc.update(transaction)
 
 
 @router.put(
     "/{transaction_id}/classify",
     description="Classify the transaction identified by its `transaction_id` with the given categories identified by the `category_ids` list.",
 )
-def update_transaction_categories(
+async def update_transaction_categories(
     transaction_id: Annotated[
         UUID,
         Path(description="The ID of the transaction to classify. Must be a `UUID`."),
@@ -149,12 +156,14 @@ def update_transaction_categories(
             description="The list of IDs of the categories to be associated to the `transaction_id`."
         ),
     ],
-    svc: TransactionSQLService = Depends(get_service(TransactionSQLService)),
-    user_id: str = Depends(get_user_id),
+    svc: Annotated[TransactionSQLService, Depends(get_service(TransactionSQLService))],
+    category_svc: Annotated[
+        ExpenseCategorySQLService, Depends(get_service(ExpenseCategorySQLService))
+    ],
+    user_id: Annotated[str, Depends(get_user_id)],
 ) -> Optional[TransactionRead]:
-    if user_id:
-        return svc.update_transaction_categories(
-            transaction_id=transaction_id, category_ids=category_ids
-        )
-
-    raise HTTPException(status_code=404, detail="User not found")
+    await check_ownership(svc=svc, resource_id=transaction_id, user_id=user_id)
+    await check_ownership(svc=category_svc, resource_id=category_ids, user_id=user_id)
+    return await svc.update_transaction_categories(
+        transaction_id=transaction_id, category_ids=category_ids
+    )

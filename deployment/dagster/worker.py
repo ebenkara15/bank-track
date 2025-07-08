@@ -1,9 +1,9 @@
 from dagster import asset
 
 from bank_track.api.database import get_session
-from bank_track.core.adapters import TransactionSQLService
-from bank_track.core.models import TransactionCreate
+from bank_track.core.schemas import TransactionCreate
 from bank_track.infra.bank import GoCardlessTokenManager
+from bank_track.services.crud import TransactionSQLService
 from bank_track.workers import TransactionWorker
 
 

@@ -5,12 +5,12 @@ from uuid import UUID
 
 from pydantic import Field
 
-from bank_track.core.models.base import BaseDomainModel
-from bank_track.core.models.categories import ExpenseCategory
-from bank_track.core.models.types import CurrencyType
+from bank_track.core.schemas.base import BaseDomainModel
+from bank_track.core.schemas.categories import ExpenseCategory
+from bank_track.core.schemas.types import CurrencyType
 
 if TYPE_CHECKING:
-    from bank_track.core.models.accounts import Account
+    from bank_track.core.schemas.accounts import Account
 
 
 class Transaction(BaseDomainModel, use_enum_values=True):
@@ -30,12 +30,12 @@ class TransactionCreate(Transaction):
     This model is passed to the corresponding `TransactionSQL`.
     """
 
-    account_id: Optional[str] = None
+    account_id: str
     user_id: str = Field(pattern=r"^user_[a-zA-Z0-9]{27}$")
 
 
 class TransactionUpdate(Transaction):
-    account_id: Optional[str] = None
+    account_id: str
     user_id: str = Field(pattern=r"^user_[a-zA-Z0-9]{27}$")
     categories: list[ExpenseCategory]
 
@@ -46,7 +46,7 @@ class TransactionRead(Transaction):
     This model is directly derived from the corresponding `TransactionSQL` model.
     """
 
-    account_id: Optional[str] = None
+    account_id: str
     user_id: str = Field(pattern=r"^user_[a-zA-Z0-9]{27}$")
     created_at: datetime
     last_modified: Optional[datetime] = None
