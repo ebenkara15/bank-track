@@ -43,6 +43,7 @@ mkdocs-material = "^9.6.11"
 griffe-pydantic = "^1.1.4"
 factory-boy = "^3.3.3"
 deprecated = "^1.2.18"
+pytest-codspeed = "^4.3.0"
 
 [tool.ruff]
 target-version = "py311"
